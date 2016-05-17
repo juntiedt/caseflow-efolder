@@ -67,7 +67,7 @@ end
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'guard-rspec'
+  #gem 'guard-rspec'
   gem 'capybara'
   gem 'sniffybara', git: 'https://github.com/department-of-veterans-affairs/sniffybara.git'
 end
