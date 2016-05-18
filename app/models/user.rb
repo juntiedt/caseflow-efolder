@@ -1,0 +1,27 @@
+class User
+  include ActiveModel::Model
+
+  attr_accessor :email, :name, :roles, :station
+
+  def display_name
+    "Unknown" unless !name.nil?
+    name
+  end
+
+  def can?(thing)
+    return false if roles.nil?
+    roles.include? thing
+  end
+
+  class << self
+    def from_css_auth_hash(auth_hash)
+      raw_css_response = auth_hash["extra"]["raw_info"]
+      User.new(
+        email: raw_css_response["http://vba.va.gov/css/common/emailAddress"],
+        name: "#{raw_css_response["http://vba.va.gov/css/common/fName"]} #{raw_css_response["http://vba.va.gov/css/common/lName"]}",
+        roles: raw_css_response.attributes["http://vba.va.gov/css/caseflow/role"],
+        station: raw_css_response["http://vba.va.gov/css/common/stationId"]
+      )
+    end
+  end
+end
