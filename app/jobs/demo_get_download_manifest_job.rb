@@ -5,23 +5,23 @@ class DemoGetDownloadManifestJob < ActiveJob::Base
     "193847561DEMO" => {
       manifest_load: 4,
       num_docs: 50,
-      max_file_load: 4
+      max_file_load: 8
     },
     "293847561DEMO" => {
       manifest_load: 4,
       num_docs: 100,
-      max_file_load: 5
+      max_file_load: 2
     },
-    "393847561DEMO3" => {
+    "393847561DEMO" => {
       manifest_load: 4,
       num_docs: 100,
-      max_file_load: 10,
+      max_file_load: 2,
       error: true
     },
     "493847561DEMO" => {
       manifest_load: 4,
-      num_docs: 400,
-      max_file_load: 4
+      num_docs: 300,
+      max_file_load: 2
     },
     "DEMODEFAULT" => {
       manifest_load: 4,

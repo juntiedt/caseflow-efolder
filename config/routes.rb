@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     post :start, on: :member
     get :download, on: :member
     get :progress, on: :member
+    get :clear, on: :collection
   end
 end

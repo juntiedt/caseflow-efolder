@@ -56,10 +56,15 @@ class DownloadsController < ApplicationController
     send_file @download_documents.zip_path
   end
 
+  def clear
+    Download.delete_all
+    redirect_to new_download_path
+  end
+
   private
 
   def recent_downloads
-    @recent_downloads ||= Download.where(status: [3, 4])
+    @recent_downloads ||= Download.where(status: [3, 4]).order(created_at: :desc)
   end
   helper_method :recent_downloads
 end
