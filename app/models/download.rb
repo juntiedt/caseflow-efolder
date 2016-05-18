@@ -8,7 +8,7 @@ class Download < ActiveRecord::Base
   end
 
   def veteran_name
-    @veteran_name ||= demo? ? "TEST" : Download.bgs_service.fetch_veteran_name(file_number)
+    @veteran_name ||= demo? ? "Shane Russell" : Download.bgs_service.fetch_veteran_name(file_number)
   end
 
   def case_exists?
