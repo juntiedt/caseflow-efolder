@@ -2,23 +2,23 @@ class DemoGetDownloadManifestJob < ActiveJob::Base
   queue_as :default
 
   DEMOS = {
-    "DEMO1" => {
+    "193847561DEMO" => {
       manifest_load: 4,
       num_docs: 50,
       max_file_load: 4
     },
-    "DEMO2" => {
+    "293847561DEMO" => {
       manifest_load: 4,
       num_docs: 100,
       max_file_load: 5
     },
-    "DEMO3" => {
+    "393847561DEMO3" => {
       manifest_load: 4,
       num_docs: 100,
       max_file_load: 10,
       error: true
     },
-    "DEMO4" => {
+    "493847561DEMO" => {
       manifest_load: 4,
       num_docs: 400,
       max_file_load: 4
