@@ -52,7 +52,7 @@ User.class_eval do
   end
 end
 
-User.login!
+User.logout!
 
 ApplicationController.class_eval do
   def current_user

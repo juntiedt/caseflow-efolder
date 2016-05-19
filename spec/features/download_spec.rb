@@ -9,6 +9,8 @@ RSpec.feature "Downloads" do
   end
 
   scenario "Creating a download" do
+    User.login!
+
     Download.bgs_service = Fakes::BGSService
     Fakes::BGSService.veteran_names = { "1234" => "Stan Lee" }
 
@@ -28,6 +30,8 @@ RSpec.feature "Downloads" do
   end
 
   scenario "Download with no documents" do
+    User.login!
+
     @download = Download.create(status: :no_documents)
     visit download_path(@download)
 
@@ -38,6 +42,8 @@ RSpec.feature "Downloads" do
   end
 
   scenario "Confirming download" do
+    User.login!
+
     @download = Download.create(file_number: "3456", status: :fetching_manifest)
 
     visit download_path(@download)
@@ -62,6 +68,8 @@ RSpec.feature "Downloads" do
   end
 
   scenario "Unfinished download with documents" do
+    User.login!
+
     @download = Download.create(status: :pending_documents)
     @download.documents.create(filename: "yawn.pdf", download_status: :pending)
     @download.documents.create(filename: "poo.pdf", download_status: :failed)
@@ -74,6 +82,8 @@ RSpec.feature "Downloads" do
   end
 
   scenario "Completed with at least one failed document download" do
+    User.login!
+
     @download = Download.create(file_number: "12", status: :complete)
     @download.documents.create(filename: "roll.pdf", download_status: :failed)
     @download.documents.create(filename: "tide.pdf", download_status: :success)
@@ -87,6 +97,8 @@ RSpec.feature "Downloads" do
   end
 
   scenario "Completed download" do
+    User.login!
+
     # clean files
     FileUtils.rm_rf(Rails.application.config.download_filepath)
 
@@ -118,6 +130,8 @@ RSpec.feature "Downloads" do
   end
 
   scenario "Recent download list" do
+    User.login!
+
     Download.create!(file_number: "12345", status: :pending_confirmation)
     pending_documents = Download.create!(file_number: "45678", status: :pending_documents)
     complete = Download.create!(file_number: "78901", status: :complete)
