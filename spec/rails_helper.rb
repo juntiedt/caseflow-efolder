@@ -29,14 +29,34 @@ Sniffybara::Driver.accessibility_code_exceptions += [
   "WCAG2AA.Principle1.Guideline1_3.1_3_1.H39.3.NoCaption"
 ]
 
-ApplicationController.class_eval do
-  def current_user
-    User.new(
+
+User.class_eval do
+  class << self
+    attr_accessor :stub
+  end
+
+  def self.current_user
+    User.stub
+  end
+
+  def self.login!
+    User.stub = User.new(
       name: "first last",
       email: "test@gmail.com",
       roles: ["Download eFolder"],
       station: "116"
     )
+  end
+  def self.logout!
+    User.stub = nil
+  end
+end
+
+User.login!
+
+ApplicationController.class_eval do
+  def current_user
+    User.current_user
   end
 end
 
