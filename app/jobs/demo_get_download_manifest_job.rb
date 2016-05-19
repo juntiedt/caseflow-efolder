@@ -5,12 +5,12 @@ class DemoGetDownloadManifestJob < ActiveJob::Base
     "193847561DEMO" => {
       manifest_load: 4,
       num_docs: 50,
-      max_file_load: 8
+      max_file_load: 4
     },
     "293847561DEMO" => {
       manifest_load: 4,
-      num_docs: 100,
-      max_file_load: 2
+      num_docs: 50,
+      max_file_load: 8
     },
     "393847561DEMO" => {
       manifest_load: 4,
@@ -40,7 +40,7 @@ class DemoGetDownloadManifestJob < ActiveJob::Base
 
   def create_documents(download, number)
     number.times do |i|
-      download.documents.create(filename: "happy-thursday-#{SecureRandom.hex}.txt", received_at: (i * 2).days.ago)
+      download.documents.create(filename: "Sample-VBMS-Document-#{SecureRandom.hex}.pdf", received_at: (i * 2).days.ago)
     end
   end
 end
